@@ -10,6 +10,7 @@
     "eazy-auth": "^0.3.8",
     "hoist-non-react-statics": "^3.0.1",
     "lodash": "^4.17.10",
+    "node-sass-chokidar": "^1.3.3",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-redux": "^5.0.7",
@@ -22,6 +23,8 @@
     "superagent": "^3.8.3"
   },
   "scripts": {
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
