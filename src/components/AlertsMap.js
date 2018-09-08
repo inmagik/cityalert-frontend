@@ -1,6 +1,17 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
+import { getCurrentPosition } from '../state/currentPosition'
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+    iconUrl: require('leaflet/dist/images/marker-icon.png'),
+    shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+});
 
 const stamenTonerTiles = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png';
 const stamenTonerAttr = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
@@ -14,10 +25,11 @@ class AlertsMap extends PureComponent {
   }
 
   render() {
-    const { alerts } = this.props
+    const { alerts, currentPosition } = this.props
     const position = [this.state.lat, this.state.lng]
 
-    console.log(alerts)
+    console.log(alerts, currentPosition)
+
     return (
       <div className="alerts-map bg-dark">
         <Map center={position} zoom={this.state.zoom} className="w-100 h-100">
@@ -25,11 +37,20 @@ class AlertsMap extends PureComponent {
           attribution={stamenTonerAttr}
           url={stamenTonerTiles}
         />
-        <Marker position={position}>
+        {currentPosition && <Marker position={[currentPosition.latitude, currentPosition.longitude]}>
           <Popup>
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
-        </Marker>
+        </Marker>}
+        {/* <MarkerClusterGroup> */}
+        {alerts && alerts.length > 0 && alerts.map(alert =>
+          alert.latitude && <Marker position={[alert.latitude, alert.longitude]}>
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+        )}
+      {/* </MarkerClusterGroup> */}
       </Map>
 
       </div>
@@ -38,7 +59,7 @@ class AlertsMap extends PureComponent {
 }
 
 export default connect(state => ({
-
+  currentPosition: getCurrentPosition(state),
 }), {
 
 })(AlertsMap)
