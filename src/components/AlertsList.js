@@ -6,9 +6,13 @@ class AlertsList extends PureComponent {
     const { alerts } = this.props
     return (
       <div>
-        {alerts.map((alert, i) => {
-          <AlertCard key={i} />
-        })}
+        {alerts.map((alert, i) => (
+          <AlertCard key={i}
+            position={alert.location}
+            text={alert.description}
+            alertState={alert.response}
+          />
+        ))}
       </div>
     )
   }
