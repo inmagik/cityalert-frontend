@@ -41,6 +41,9 @@ class AddAlert extends Component {
               }
               return createAlert(alert)
             }}
+            onSubmitSuccess={data => {
+              this.props.history.push('/alerts/map')
+            }}
           />}
         </div>
       </Layout>
