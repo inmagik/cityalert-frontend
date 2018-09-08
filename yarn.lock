@@ -5974,6 +5974,12 @@ redux-rocketjump@^1.6.0:
     object-path-immutable "^3.0.0"
     query-string "5"
 
+redux-saga-thunk@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/redux-saga-thunk/-/redux-saga-thunk-0.7.2.tgz#f25049bf68a2b86146b6000765406a0e2b7260f7"
+  dependencies:
+    lodash "^4.17.4"
+
 redux-saga@^0.16.0:
   version "0.16.0"
   resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.16.0.tgz#0a231db0a1489301dd980f6f2f88d8ced418f724"

@@ -8,7 +8,7 @@ class SubNavbar extends PureComponent {
     const { alertTypes, onChangeFilter, onChangeFilterDebounced, values } = this.props
     const alertTypesById = keyBy(alertTypes, 'id')
     return (
-      <div className="subnavbar">
+      <div className="subnavbar" style={{ zIndex: 99999 }}>
         <div className='pt-1'>
         <UncontrolledDropdown>
         <DropdownToggle caret>

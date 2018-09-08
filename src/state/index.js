@@ -2,11 +2,13 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { reducer as formReducer } from 'redux-form'
 import { makeAppsReducers, makeAppsSaga } from 'redux-rocketjump'
+import { middleware as thunkMiddleware } from 'redux-saga-thunk'
 import * as auth from './auth'
 import * as currentPosition from './currentPosition'
 import * as alerts from './alerts'
 import * as alertTypes from './alertTypes'
 import * as geocoding from './geocoding'
+import * as similarAlerts from './similarAlerts'
 
 // Where i see it? hhehe eheh
 const APPS = {
@@ -15,6 +17,7 @@ const APPS = {
   alerts,
   alertTypes,
   geocoding,
+  similarAlerts,
 }
 
 const rootReducer = combineReducers({
@@ -32,7 +35,7 @@ const store = createStore(
   rootReducer,
   preloadedState,
   composeEnhancers(
-    applyMiddleware(sagaMiddleware),
+    applyMiddleware(thunkMiddleware, sagaMiddleware),
   )
 )
 
