@@ -28,7 +28,7 @@ class AlertsMap extends PureComponent {
     const { alerts, currentPosition } = this.props
     const position = [this.state.lat, this.state.lng]
 
-    console.log(alerts, currentPosition)
+    console.log("alerts", alerts)
 
     return (
       <div className="alerts-map bg-dark">
@@ -37,16 +37,16 @@ class AlertsMap extends PureComponent {
           attribution={stamenTonerAttr}
           url={stamenTonerTiles}
         />
-        {currentPosition && <Marker position={[currentPosition.latitude, currentPosition.longitude]}>
+        {/* {currentPosition && <Marker position={[currentPosition.latitude, currentPosition.longitude]}>
           <Popup>
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
-        </Marker>}
+        </Marker>} */}
         {/* <MarkerClusterGroup> */}
-        {alerts && alerts.length > 0 && alerts.map(alert =>
-          alert.latitude && <Marker position={[alert.latitude, alert.longitude]}>
+        {alerts && alerts.length > 0 && alerts.map((item, i) =>
+          item.position && <Marker key={item.id} position={item.position.coordinates.slice().reverse()}>
             <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
+              {item.alert_type}
             </Popup>
           </Marker>
         )}

@@ -1,6 +1,9 @@
 import React from "react";
-
+import FieldPosition from './FieldPosition'
 import { Input, FormGroup, Label, FormFeedback } from "reactstrap";
+
+export { FieldPosition }
+
 const arrayze = a => (Array.isArray(a) ? a : [a]);
 
 export const FieldInput = ({

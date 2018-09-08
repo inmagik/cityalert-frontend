@@ -6,6 +6,7 @@ import * as auth from './auth'
 import * as currentPosition from './currentPosition'
 import * as alerts from './alerts'
 import * as alertTypes from './alertTypes'
+import * as geocoding from './geocoding'
 
 // Where i see it? hhehe eheh
 const APPS = {
@@ -13,6 +14,7 @@ const APPS = {
   currentPosition,
   alerts,
   alertTypes,
+  geocoding,
 }
 
 const rootReducer = combineReducers({
