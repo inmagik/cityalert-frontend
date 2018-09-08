@@ -4,13 +4,13 @@ class AlertCard extends PureComponent {
   render() {
     const { text, category, image, position, alertState } = this.props
     return (
-      <div className="card m-y-1">
-        {/* <img className="card-img-top" src=".../100px180/" alt="Card image cap"> */}
+      <div className="card mt-1">
         <div className="card-body">
           <div className='d-inline-flex w-100'>
-            <div style={{flex:2}}>
-              <h5 className="card-title">Categoria: {category}</h5>
-              <p className="card-text">{text}</p>
+            <div className='flex-2'>
+              <img className="img-thumbnail" src="http://placekitten.com/100/100" alt="Card image cap" />
+              <h5>Categoria: {category}</h5>
+              <p>{text}</p>
             </div>
             <div style={{flex:1}}>
               <span>Posizione: {position}</span><br/>
