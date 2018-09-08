@@ -3,10 +3,10 @@ import AlertCard from './AlertCard'
 
 class AlertsList extends PureComponent {
   render() {
-    const { data } = this.props
+    const { alerts } = this.props
     return (
       <div>
-        {data.map((datum, i) => {
+        {alerts.map((alert, i) => {
           <AlertCard key={i} />
         })}
       </div>

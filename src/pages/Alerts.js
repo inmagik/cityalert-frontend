@@ -18,7 +18,7 @@ class Alerts extends PureComponent {
       <Layout className={'alertlist-page'}>
         <SubNavbar />
         <div className='p-2'>
-          <AlertsList />
+          <AlertsList alerts={alerts}/>
         </div>
         <BottomTabs />
       </Layout>
