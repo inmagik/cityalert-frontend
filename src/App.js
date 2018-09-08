@@ -1,6 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import AlertList from './pages/AlertList'
+import AddAlert from './pages/AddAlert'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { GuestRoute, AuthRoute } from 'eazy-auth'
 import store from './state'
@@ -15,7 +16,8 @@ const App = () => (
         {/* <GuestRoute path='/recover' exact component={Recover} />
         <GuestRoute path='/reset/:token' exact component={Reset} />
         <GuestRoute path='/register' exact component={Recover} /> */}
-        <Route path='/alerts' exact component={AlertList} /> 
+        <Route path='/alerts' exact component={AlertList} />
+        <AuthRoute path='/alerts/add' exact component={AddAlert} />
       </Switch>
     </Router>
   </Provider>

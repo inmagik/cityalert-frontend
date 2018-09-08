@@ -1,19 +1,23 @@
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-// import { reducer as formReducer } from 'redux-form'
+import { reducer as formReducer } from 'redux-form'
 import { makeAppsReducers, makeAppsSaga } from 'redux-rocketjump'
 import * as auth from './auth'
 import * as currentPosition from './currentPosition'
+import * as alerts from './alerts'
+import * as alertTypes from './alertTypes'
 
 // Where i see it? hhehe eheh
 const APPS = {
   auth,
   currentPosition,
+  alerts,
+  alertTypes,
 }
 
 const rootReducer = combineReducers({
   // HOOK for other reducers like redux-form...
-  // form: formReducer,
+  form: formReducer,
   ...makeAppsReducers(APPS),
 })
 
