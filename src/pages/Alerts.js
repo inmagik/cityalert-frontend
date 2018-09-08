@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import AlertsList from '../components/AlertsList'
+import AlertsMap from '../components/AlertsMap'
 import Layout from '../components/Layout'
 import SubNavbar from '../components/SubNavbar'
 import BottomTabs from '../components/BottomTabs'
@@ -15,10 +16,11 @@ class Alerts extends PureComponent {
     const { alerts } = this.props
     console.log(alerts)
     return (
-      <Layout className={'alertlist-page'}>
+      <Layout>
         <SubNavbar />
-        <div className='p-2'>
+        <div className='alerts-container'>
           <AlertsList alerts={alerts}/>
+          {/* <AlertsMap alerts={alerts}/> */}
         </div>
         <BottomTabs />
       </Layout>
