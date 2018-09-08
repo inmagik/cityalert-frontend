@@ -8,21 +8,30 @@ import { connect } from 'react-redux'
 import { loadAlerts, getAlerts } from '../state/alerts'
 
 class Alerts extends PureComponent {
+
+
   componentDidMount() {
     this.props.loadAlerts()
   }
 
+  toggleTab = (tabName) => () => {
+    this.props.history.push(`/alerts/${tabName}`)
+  }
+
   render() {
-    const { alerts } = this.props
+    const { alerts, match } = this.props
+    const { params } = match
+    const activeTab = params.activeTab || 'list'
+
     console.log(alerts)
     return (
       <Layout>
         <SubNavbar />
         <div className='alerts-container'>
-          <AlertsList alerts={alerts}/>
-          {/* <AlertsMap alerts={alerts}/> */}
+          {activeTab === 'list' && <AlertsList alerts={alerts}/>}
+          {activeTab === 'map' && <AlertsMap alerts={alerts}/>}
         </div>
-        <BottomTabs />
+        <BottomTabs toggleTab={this.toggleTab} currentTab={activeTab}/>
       </Layout>
     )
   }

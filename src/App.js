@@ -17,7 +17,7 @@ const App = () => (
         <GuestRoute path='/reset/:token' exact component={Reset} />
         <GuestRoute path='/register' exact component={Recover} /> */}
         <AuthRoute path='/alerts' exact component={Alerts} />
-        <AuthRoute path='/alerts/add' exact component={AddAlert} />
+        <AuthRoute path='/alerts/add/:activeTab?' exact component={AddAlert} />
       </Switch>
     </Router>
   </Provider>

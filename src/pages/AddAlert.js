@@ -32,14 +32,14 @@ class AddAlert extends Component {
                 position: {
                   type: 'Point',
                   coordinates: [
-                    values.position.latitude,
-                    values.position.latitude,
+                    values.position.longitude,
+                    values.position.latitude
                   ],
                 },
                 location: values.position.location,
                 alert_type: +values.alert_type === 0 ? null : values.alert_type,
               }
-              return createAlert(values)
+              return createAlert(alert)
             }}
           />}
         </div>
