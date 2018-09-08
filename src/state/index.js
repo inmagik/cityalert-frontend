@@ -2,9 +2,13 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 // import { reducer as formReducer } from 'redux-form'
 import { makeAppsReducers, makeAppsSaga } from 'redux-rocketjump'
+import * as auth from './auth'
+import * as currentPosition from './currentPosition'
 
 // Where i see it? hhehe eheh
 const APPS = {
+  auth,
+  currentPosition,
 }
 
 const rootReducer = combineReducers({
