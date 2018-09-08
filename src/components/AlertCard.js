@@ -2,7 +2,7 @@ import React, { PureComponent }  from 'react'
 
 class AlertCard extends PureComponent {
   render() {
-    const { text, category, image, position, alertState } = this.props
+    const { alert, onVote } = this.props
     return (
       <div className="card mt-1">
         <div className="card-body p-1">
@@ -10,14 +10,15 @@ class AlertCard extends PureComponent {
             <div className='alertcard-right'>
               <img className="img-thumbnail" src="http://placekitten.com/100/100" alt="Card cap" />
               <div className='p-2'>
-                <h5>Categoria: {category}</h5>
-                <p>{text}</p>
+                {/* <h5>Categoria: {}</h5> */}
+                <p>{alert.description}</p>
               </div>
             </div>
             <div className='alertcard-left'>
-              <span>Posizione: {position}</span><br/>
-              <span>Stato: <b>{alertState}</b></span>
-              <div>+ 23</div>
+              {/* <span>Posizione: {alert.position}</span><br/> */}
+              {/* <span>Stato: <b>{alertState}</b></span> */}
+              {!alert.vote_by_me && <button onClick={() => onVote(alert.id)}>Vote</button>}
+              <div>+ {alert.votes_count}</div>
             </div>
           </div>
         </div>

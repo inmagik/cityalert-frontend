@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 import SubNavbar from '../components/SubNavbar'
 import BottomTabs from '../components/BottomTabs'
 import { connect } from 'react-redux'
-import { loadAlerts, getAlerts } from '../state/alerts'
+import { loadAlerts, getAlerts, voteAlert } from '../state/alerts'
 import { loadAlertTypes, getAlertTypes } from '../state/alertTypes'
 import debounce from 'lodash/debounce'
 import qs from 'query-string'
@@ -38,6 +38,10 @@ class Alerts extends PureComponent {
     this.props.loadAlerts(params)
   }, 300)
 
+  voteAlert = (id) => {
+    this.props.voteAlert({ id })
+  }
+
   render() {
     const { alerts, alertTypes, match, location } = this.props
     const { params } = match
@@ -53,8 +57,8 @@ class Alerts extends PureComponent {
           alertTypes={alertTypes}
         />
         <div className='alerts-container'>
-          {activeTab === 'list' && <AlertsList alerts={alerts}/>}
-          {activeTab === 'map' && <AlertsMap alerts={alerts}/>}
+          {activeTab === 'list' && <AlertsList alerts={alerts} onVote={this.voteAlert} />}
+          {activeTab === 'map' && <AlertsMap alerts={alerts} />}
         </div>
         <BottomTabs toggleTab={this.toggleTab} currentTab={activeTab}/>
       </Layout>
@@ -69,4 +73,5 @@ export default connect(state => ({
 }), {
   loadAlerts,
   loadAlertTypes,
+  voteAlert,
 })(Alerts)

@@ -1,26 +1,31 @@
 import React, { PureComponent } from 'react'
+import keyBy from 'lodash/keyBy'
+import get from 'lodash/get'
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 class SubNavbar extends PureComponent {
   render() {
     const { alertTypes, onChangeFilter, onChangeFilterDebounced, values } = this.props
+    const alertTypesById = keyBy(alertTypes, 'id')
     return (
       <div className="subnavbar">
         <div className='pt-1'>
         <UncontrolledDropdown>
         <DropdownToggle caret>
-          Tipo: {values.alertType || 'Tutti'}
+          Tipo: {get(alertTypesById, `${values.alert_type}.name`, 'Tutti')}
         </DropdownToggle>
-          <DropdownMenu >
+          <DropdownMenu>
             {alertTypes.map(alertType => (
-                <DropdownItem key={alertType.id} onClick={() => onChangeFilter({
+                <DropdownItem
+                  active={+values.alert_type === alertType.id}
+                  key={alertType.id} onClick={() => onChangeFilter({
                   ...values,
-                  alertType: alertType.name
+                  alert_type: alertType.id,
                 })}>{alertType.name}</DropdownItem>
             ))}
             <DropdownItem onClick={() => onChangeFilter({
               ...values,
-              alertType: undefined,
+              alert_type: undefined,
             })}>Tutti</DropdownItem>
           </DropdownMenu>
       </UncontrolledDropdown>
@@ -30,9 +35,9 @@ class SubNavbar extends PureComponent {
           <input
             onChange={e => onChangeFilterDebounced({
               ...values,
-              q: e.target.value
+              search: e.target.value
             })}
-            value={typeof values.q === 'undefined' ? '' : values.q}
+            value={typeof values.search === 'undefined' ? '' : values.search}
             className="form-control mr-sm-2"
             type="search"
             placeholder="Cerca" aria-label="Search" />

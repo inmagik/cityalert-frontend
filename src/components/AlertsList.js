@@ -3,15 +3,11 @@ import AlertCard from './AlertCard'
 
 class AlertsList extends PureComponent {
   render() {
-    const { alerts } = this.props
+    const { alerts, onVote } = this.props
     return (
       <div>
         {alerts.map((alert, i) => (
-          <AlertCard key={i}
-            position={alert.location}
-            text={alert.description}
-            alertState={alert.response}
-          />
+          <AlertCard key={i} alert={alert} onVote={onVote} />
         ))}
       </div>
     )
