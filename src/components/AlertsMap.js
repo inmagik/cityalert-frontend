@@ -46,7 +46,7 @@ class AlertsMap extends PureComponent {
         {alerts && alerts.length > 0 && alerts.map((item, i) =>
           item.position && <Marker key={item.id} position={item.position.coordinates.slice().reverse()}>
             <Popup>
-              {item.alert_type}
+              {item.alert_type_verbose}
             </Popup>
           </Marker>
         )}

@@ -8,7 +8,7 @@ class AlertCard extends PureComponent {
         <div className="card-body p-1">
           <div className='d-inline-flex w-100'>
             <div className='alertcard-right'>
-              <img className="img-thumbnail" src="http://placekitten.com/100/100" alt="Card cap" />
+              <img className="img-thumbnail" src={alert.image} alt="Card cap" />
               <div className='p-2'>
                 {/* <h5>Categoria: {}</h5> */}
                 <p>{alert.description}</p>
