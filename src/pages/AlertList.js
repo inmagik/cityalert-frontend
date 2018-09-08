@@ -1,20 +1,21 @@
 import React, { PureComponent } from 'react'
 import AlertCard from '../components/AlertCard'
-import Navbar from '../components/Navbar'
+import Layout from '../components/Layout'
 import SubNavbar from '../components/SubNavbar'
+import BottomTabs from '../components/BottomTabs'
 
 class AlertList extends PureComponent {
   render() {
     return (
-      <div className='alertlist-page'>
-        <Navbar />
+      <Layout className={'alertlist-page'}>
         <SubNavbar />
         <div className='p-2'>
           <AlertCard />
           <AlertCard />
 
         </div>
-      </div>
+        <BottomTabs />
+      </Layout>
     )
   }
 }
