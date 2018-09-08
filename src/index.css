@@ -3,3 +3,33 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.full-page {
+  height: 100%;
+  background: url('/bg.svg');
+  /* background-color: #D85002; */
+}
+
+.full-form-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%; }
+
+.full-form-container {
+  margin-top: 100px;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px 0 rgba(47, 83, 151, 0.1);
+  display: flex;
+  justify-content: center; }
+
+.full-form {
+  padding-top: 65px;
+  padding-bottom: 71px;
+  background-color: #fffff;
+  max-width: 350px;
+  width: 100%; }

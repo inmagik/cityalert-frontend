@@ -1,4 +1,4 @@
-import { makeAuthFlow, makeAuthReducer, getAuthAccessToken as getToken } from 'eazy-auth'
+import { makeAuthFlow, makeAuthReducer } from 'eazy-auth'
 import request from 'superagent'
 
 // Inject token in Authorization header when provided
@@ -14,13 +14,15 @@ const login = ({ email, password }) =>
     }))
 
 const me = (token) =>
-  withToken(token, request.get('/api/profilo/'))
+  withToken(token, request.get('/auth/me/'))
     .then(({ body }) => body)
 
 const { authFlow, authApiCall } = makeAuthFlow({
   meCall: me,
   loginCall: login,
 })
+
+const reducer = makeAuthReducer()
 
 export {
   authFlow as saga,
