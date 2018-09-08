@@ -16,7 +16,7 @@ const App = () => (
         {/* <GuestRoute path='/recover' exact component={Recover} />
         <GuestRoute path='/reset/:token' exact component={Reset} />
         <GuestRoute path='/register' exact component={Recover} /> */}
-        <Route path='/alerts' exact component={AlertList} />
+        <AuthRoute path='/alerts' exact component={AlertList} />
         <AuthRoute path='/alerts/add' exact component={AddAlert} />
       </Switch>
     </Router>

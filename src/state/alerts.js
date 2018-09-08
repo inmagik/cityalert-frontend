@@ -17,4 +17,5 @@ export const {
   callApi: authApiCall,
   api: t => (params) => withToken(t, request.get(`/api/alerts`))
       .query(params)
+      .then(({ body }) => body)
 })()
