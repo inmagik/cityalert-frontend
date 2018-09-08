@@ -21,12 +21,16 @@ class Alerts extends PureComponent {
   }
 
   onChangeFilter = values => {
-    this.props.history.push(`/alerts?${qs.stringify(values)}`)
+    const { params } = this.props.match
+    const activeTab = params.activeTab || 'list'
+    this.props.history.push(`/alerts/${activeTab}?${qs.stringify(values)}`)
     this.props.loadAlerts(values)
   }
 
   onChangeFilterDebounced = values => {
-    this.props.history.push(`/alerts?${qs.stringify(values)}`)
+    const { params } = this.props.match
+    const activeTab = params.activeTab || 'list'
+    this.props.history.push(`/alerts/${activeTab}?${qs.stringify(values)}`)
     this.loadDebounced(values)
   }
 
