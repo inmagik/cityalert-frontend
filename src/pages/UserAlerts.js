@@ -6,7 +6,7 @@ import BottomTabs from '../components/BottomTabs'
 import { connect } from 'react-redux'
 import { loadAlerts, getAlerts, voteAlert } from '../state/alerts'
 import { loadAlertTypes, getAlertTypes } from '../state/alertTypes'
-import { getAuthUser } from 'eazy-auth'
+import { getAuthUser, logout } from 'eazy-auth'
 import debounce from 'lodash/debounce'
 import qs from 'query-string'
 
@@ -60,6 +60,7 @@ class UserAlerts extends PureComponent {
         <div className='alerts-container'>
           <div className="p-4">
             <h2 className="mb-0">Le tue segnalazioni</h2>
+            <button className="btn btn-outline-primary" onClick={this.props.logout}>LOGOUT</button>
           </div>
           <AlertsList alerts={alerts.filter(alert => +alert.user === +user.id)}/>
         </div>
@@ -78,4 +79,5 @@ export default connect(state => ({
   loadAlerts,
   loadAlertTypes,
   voteAlert,
+  logout,
 })(UserAlerts)
