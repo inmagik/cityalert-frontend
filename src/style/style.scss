@@ -88,3 +88,14 @@
 .pointer {
   cursor: pointer;
 }
+
+@media (max-width: 576px) {
+  .card-container {
+    flex-direction: column;
+  }
+  .alertcard-left {
+    display: flex;
+    justify-content: space-between;
+    text-align: right;
+  }
+}
