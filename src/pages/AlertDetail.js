@@ -113,12 +113,17 @@ class AlertDetail extends PureComponent {
             Puoi inserire un messaggio visibile ai cittadini insieme allo stato della richiesta.
           </div>
           <div className="p-2">
-            <textarea className="form-control w-100" value={this.state.message} onChange={(e)=>{this.setState({message:e.target.value})}}>
+            <label>
+              <strong>Messaggio pubblico</strong>
+            </label>
+            <textarea
+              placeholder="inserire un messaggio per i cittadini"
+              className="form-control w-100" value={this.state.message} onChange={(e)=>{this.setState({message:e.target.value})}}>
 
             </textarea>
           </div>
           <div className="d-flex justify-content-between my-3 bg-light p-2">
-            <button onClick={this.saveResponse('invalid')} className="btn btn-danger">ANNULLA</button>
+            <button onClick={this.saveResponse('invalid')} className="btn btn-danger">INVALIDA</button>
             <button onClick={this.saveResponse('accepted')} className="btn btn-primary">PRENDI IN CARICO</button>
             <button onClick={this.saveResponse('resolved')} className="btn btn-success">RISOLVI</button>
           </div>
