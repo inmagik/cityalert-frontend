@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import keyBy from 'lodash/keyBy'
 import get from 'lodash/get'
+import capitalize from 'lodash/capitalize'
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { responsesStatuses } from '../utils'
 
@@ -35,20 +36,20 @@ class SubNavbar extends PureComponent {
         <div className='mx-1'>
         <UncontrolledDropdown>
         <DropdownToggle caret>
-          Stato: {get(alertTypesById, `${values.alert_type}.name`, 'Tutti')}
+          Stato: {values.response__status ? capitalize(values.response__status) : 'Tutti'}
         </DropdownToggle>
           <DropdownMenu>
             {responsesStatuses.map(status => (
                 <DropdownItem
-                  active={values.status === status}
+                  active={values.response__status === status}
                   key={status} onClick={() => onChangeFilter({
                   ...values,
-                  response_status: status,
-                })}>{status}</DropdownItem>
+                  response__status: status,
+                })}>{capitalize(status)}</DropdownItem>
             ))}
             <DropdownItem onClick={() => onChangeFilter({
               ...values,
-              status: undefined,
+              response__status: undefined,
             })}>Tutti</DropdownItem>
           </DropdownMenu>
       </UncontrolledDropdown>
