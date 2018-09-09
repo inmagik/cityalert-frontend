@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import keyBy from 'lodash/keyBy'
 import get from 'lodash/get'
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { responsesStatuses } from '../utils'
 
 class SubNavbar extends PureComponent {
   render() {
@@ -9,7 +10,7 @@ class SubNavbar extends PureComponent {
     const alertTypesById = keyBy(alertTypes, 'id')
     return (
       <div className="subnavbar" style={{ zIndex: 99999 }}>
-        <div className='pt-1'>
+        <div className='pt-1 mx-1'>
         <UncontrolledDropdown>
         <DropdownToggle caret>
           Tipo: {get(alertTypesById, `${values.alert_type}.name`, 'Tutti')}
@@ -26,6 +27,28 @@ class SubNavbar extends PureComponent {
             <DropdownItem onClick={() => onChangeFilter({
               ...values,
               alert_type: undefined,
+            })}>Tutti</DropdownItem>
+          </DropdownMenu>
+      </UncontrolledDropdown>
+        </div>
+
+        <div className='pt-1 mx-1'>
+        <UncontrolledDropdown>
+        <DropdownToggle caret>
+          Stato: {get(alertTypesById, `${values.alert_type}.name`, 'Tutti')}
+        </DropdownToggle>
+          <DropdownMenu>
+            {responsesStatuses.map(status => (
+                <DropdownItem
+                  active={values.status === status}
+                  key={status} onClick={() => onChangeFilter({
+                  ...values,
+                  response_status: status,
+                })}>{status}</DropdownItem>
+            ))}
+            <DropdownItem onClick={() => onChangeFilter({
+              ...values,
+              status: undefined,
             })}>Tutti</DropdownItem>
           </DropdownMenu>
       </UncontrolledDropdown>
