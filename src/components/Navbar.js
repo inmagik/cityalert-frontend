@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Link, Route } from 'react-router-dom'
+import { Link, Route, withRouter } from 'react-router-dom'
 
 class Navbar extends PureComponent {
   render() {
@@ -11,11 +11,11 @@ class Navbar extends PureComponent {
             <span className="navbar-toggler-icon"></span>
           </button> */}
         </div>
-        <Route path='/alerts/map' exact>
+        <Route path='/alerts/(list|map)' exact component={() => (
           <Link className="btn btn-outline-primary" to='/alerts/add'>
             <i className="fa fa-plus"></i>{' '}Aggiungi segnalazione
           </Link>
-        </Route>
+        )} />
 
 
       </nav>
@@ -23,4 +23,4 @@ class Navbar extends PureComponent {
   }
 }
 
-export default Navbar
+export default withRouter(Navbar)
