@@ -48,6 +48,12 @@ class AlertDetail extends PureComponent {
         <div className="container" style={{paddingTop:50}}>
           <div className="p-4">
             <h2>{alert.alert_type_verbose}</h2>
+
+            <div className='mb-2'>
+              <b className='pt-1 text-info'>+ {alert.votes_count}</b>
+              {alert.vote_by_me && <span className='text-info ml-2' style={{height:31}}><i className="fa fa-heart"></i></span>}
+            </div>
+
             {alert.response && <h5 className="badge ml-1" style={{backgroundColor:getAlertColor(alert), color: '#fff'}}>{alert.response.status}</h5>}
             {!alert.response && <h5 className="badge ml-1" style={{backgroundColor:'#ccc', color: '#fff'}}>Aperta</h5>}
             <div className="m-2">
