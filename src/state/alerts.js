@@ -93,6 +93,7 @@ export const {
     type: 'CREATE_ALERT_RESPONSE',
     api: t => (alertResponse) =>
       withToken(t, request.post(`/api/responses/`))
+        .send(alertResponse)
         .then(alertResponse)
   }),
 
