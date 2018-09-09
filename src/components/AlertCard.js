@@ -22,9 +22,12 @@ class AlertCard extends PureComponent {
             <div className='alertcard-left'>
               <div className='mb-2'>
                 <b className='pt-1 text-info'>+ {alert.votes_count}</b>
-                {!alert.vote_by_me && onVote &&
+                {onVote &&
                   <div>
-                    <button className="btn btn-info btn-sm ml-1" onClick={() => onVote(alert.id)}>VOTA <i className="fa fa-thumbs-up"></i></button>
+                    {!alert.vote_by_me
+                    ? <button className="btn btn-info btn-sm ml-1" onClick={() => onVote(alert.id)}>VOTA <i className="fa fa-thumbs-up"></i></button>
+                    : <span className='text-info' style={{height:31}}><i className="fa fa-heart"></i></span>}
+
                   </div>}
               </div>
               <div className='mt-3'>
