@@ -55,10 +55,7 @@ class SubNavbar extends PureComponent {
       </UncontrolledDropdown>
         </div>
 
-        <div className="d-flex justify-content-center align-items-center mx-2">
-          <span className="">{alerts.length} segnalazioni</span>
-        </div>
-
+        
         <div className='w-25'>
           <input
             onChange={e => onChangeFilterDebounced({
