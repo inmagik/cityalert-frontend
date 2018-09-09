@@ -12,7 +12,7 @@ const stamenTonerTiles = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}
 const stamenTonerAttr = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
 const currentPostIcon = L.icon.fontAwesome({
   iconClasses: 'fa fa-user', // you _could_ add other icon classes, not tested.
-  markerColor: 'lime',
+  markerColor: '#222',
   iconColor: '#FFF' })
 
 class AlertsMap extends PureComponent {

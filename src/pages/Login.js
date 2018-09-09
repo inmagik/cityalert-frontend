@@ -5,7 +5,11 @@ import withFullPage from '../hocs/withFullPage'
 const Login = ({ handleSubmit, credentials: { email, password }, error, loading }) => (
   <div className='full-form-page'>
     <div className='full-form-container'>
+
       <form className='full-form' onSubmit={handleSubmit}>
+        <div className="text-center mb-2">
+          <h3>CityAlert</h3>
+        </div>
         <div className="form-group">
           <input
             {...email}

@@ -48,6 +48,9 @@ class AlertDetail extends PureComponent {
         <div className="container" style={{paddingTop:50}}>
           <div className="p-4">
             <h2>{alert.alert_type_verbose}</h2>
+            {alert.response && <div className="mb-2 alert alert-info">
+              {alert.response.message}
+            </div>}
 
             <div className='mb-2'>
               <b className='pt-1 text-info'>+ {alert.votes_count}</b>
@@ -80,6 +83,7 @@ class AlertDetail extends PureComponent {
 
           {alert.response && (
             <div className='m-2'>
+
               {alert.response.security_issue && (
                 <div>
 
@@ -87,7 +91,6 @@ class AlertDetail extends PureComponent {
                     <i className="fas fa-exclamation-triangle mr-2"></i>
                     Questa segnalazione rappresenta un problema alla sicurezza pubblica.
                   </div>
-                  <p>{alert.response.message}</p>
                 </div>
 
               )}
