@@ -9,15 +9,15 @@ class BottomTabs extends PureComponent {
     return (
       <div className="bottomtabs">
         <div
-          className={cx('bottomtabs-link border-right', {'bottomtabs-link-active': currentTab === 'list'})}
+          className={cx('bottomtabs-link border-right pointer', {'bottomtabs-link-active': currentTab === 'list'})}
           onClick={toggleTab('list')}
           >
-          Lista
+          <i className="fa fa-list"></i> Lista
         </div>
-        <div className={cx('bottomtabs-link', {'bottomtabs-link-active': currentTab === 'map'})}
+        <div className={cx('bottomtabs-link pointer', {'bottomtabs-link-active': currentTab === 'map'})}
           onClick={toggleTab('map')}
           >
-          Mappa
+          <i className="fa fa-map"></i> Mappa
         </div>
       </div>
     )

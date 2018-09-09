@@ -84,7 +84,12 @@ class AlertDetail extends PureComponent {
                 </div>
                 <div>
                   <h5>{alert.alert_type_verbose}</h5>
-                  {alert.description}
+                  <div>
+                    {alert.description}
+                  </div>
+                  <div>
+                    <small>Inserito da {alert.user_email} il <MomentSpan date={alert.created}/></small>
+                  </div>
                 </div>
               </div>
             })}
