@@ -38,6 +38,14 @@ export const {
       actions: {
         update: voteAlert,
       },
+    },
+    detail: {
+      actions: {
+        load: loadAlert,
+      },
+      selectors: {
+        getData: getAlert,
+      },
     }
   },
   saga,
@@ -50,6 +58,13 @@ export const {
       makeUpdateReducer('VOTE_ALERT'),
     ],
     api: t => (params) => withToken(t, request.get(`/api/alerts/`))
+        .query(params)
+        .then(({ body }) => body)
+  }),
+
+  detail: rj({
+    type: 'GET_ALERT',
+    api: t => ({ id }, params) => withToken(t, request.get(`/api/alerts/${id}`))
         .query(params)
         .then(({ body }) => body)
   }),
