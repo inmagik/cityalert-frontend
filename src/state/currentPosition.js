@@ -11,6 +11,14 @@ export const getCurrentPosition = (state => {
 const obtainPos = () => new Promise((resolve) => {
   window.navigator.geolocation.getCurrentPosition((position) => {
     resolve(position)
+  }, () => {
+    // MOCK DA SHIT
+    resolve({
+      coords: {
+        latitude: 45.7100751,
+        longitude: 9.679170599999999,
+      }
+    })
   })
 })
 
