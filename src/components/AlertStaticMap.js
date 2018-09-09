@@ -24,7 +24,7 @@ class AlertStaticMap extends PureComponent {
       return null
     }
 
-    const position = alert.position.coordinates.lice().reverse()
+    const position = alert.position.coordinates.slice().reverse()
 
     console.log("position", position)
 
