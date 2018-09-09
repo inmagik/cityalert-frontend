@@ -25,14 +25,16 @@ class AlertCard extends PureComponent {
               <div className="">
 
               </div>
-              <div className='text-dark d-inline-flex mb-2'>
-                <b className='pt-1'>+ {alert.votes_count}</b>
-                {!alert.vote_by_me &&
-                  <button className="btn btn-outline-dark btn-sm ml-1" onClick={() => onVote(alert.id)}>VOTA <i className="fa fa-thumbs-up"></i></button>}
+              <div className='mb-2'>
+                <b className='pt-1 text-info'>+ {alert.votes_count}</b>
+                {!alert.vote_by_me && onVote &&
+                  <div>
+                    <button className="btn btn-info btn-sm ml-1" onClick={() => onVote(alert.id)}>VOTA <i className="fa fa-thumbs-up"></i></button>
+                  </div>}
               </div>
               <div className='mt-3'>
-                <Link to={`/alert-detail/${alert.id}`}>
-                  DETTAGLIO{' '}
+                <Link className='btn btn-light' to={`/alert-detail/${alert.id}`}>
+                  VEDI{' '}
                   <i className="fa fa-chevron-right"></i>
                 </Link>
               </div>

@@ -3,6 +3,8 @@ import { Provider } from 'react-redux'
 import Alerts from './pages/Alerts'
 import AlertDetail from './pages/AlertDetail'
 import AddAlert from './pages/AddAlert'
+import UserAlerts from './pages/UserAlerts'
+
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { GuestRoute, AuthRoute } from 'eazy-auth'
 import store from './state'
@@ -20,6 +22,7 @@ const App = () => (
         <AuthRoute path='/alert-detail/:id' exact component={AlertDetail} />
         <AuthRoute path='/alerts/add' exact component={AddAlert} />
         <AuthRoute path='/alerts/:activeTab?' exact component={Alerts} />
+        <AuthRoute path='/user-alerts' exact component={UserAlerts} />
         <Redirect from='/' to='/alerts' />
       </Switch>
     </Router>
