@@ -77,7 +77,23 @@ class AlertDetail extends PureComponent {
             </div>
           </div>
           <hr/>
-          {user.is_staff && <Fragment>
+
+          {alert.response && (
+            <div className='m-2'>
+              {alert.response.security_issue && (
+                <div>
+
+                  <div className='alert alert-warning'>
+                    <i className="fas fa-exclamation-triangle mr-2"></i>
+                    Questa segnalazione rappresenta un problema alla sicurezza pubblica.
+                  </div>
+                  <p>{alert.response.message}</p>
+                </div>
+
+              )}
+            </div>
+          )}
+          {(user.is_staff &&!alert.response) && <Fragment>
           {/* similar alerts */}
           <h3>Segnalazioni simili</h3>
           <div className="alert alert-info mb-2">
@@ -108,7 +124,7 @@ class AlertDetail extends PureComponent {
           <hr/>
           </Fragment>}
 
-          {user.is_staff && <Fragment>
+          {(user.is_staff && !alert.response) && <Fragment>
           <h3>Problemi di sicurezza</h3>
           <div className="alert alert-info">
             Se la problematica segnalata comporta problemi di sicurezza, indicarlo di seguito.
