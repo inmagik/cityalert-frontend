@@ -10,7 +10,7 @@ class SubNavbar extends PureComponent {
     const alertTypesById = keyBy(alertTypes, 'id')
     return (
       <div className="subnavbar" style={{ zIndex: 99999 }}>
-        <div className='pt-1 mx-1'>
+        <div className='mx-1'>
         <UncontrolledDropdown>
         <DropdownToggle caret>
           Tipo: {get(alertTypesById, `${values.alert_type}.name`, 'Tutti')}
@@ -32,7 +32,7 @@ class SubNavbar extends PureComponent {
       </UncontrolledDropdown>
         </div>
 
-        <div className='pt-1 mx-1'>
+        <div className='mx-1'>
         <UncontrolledDropdown>
         <DropdownToggle caret>
           Stato: {get(alertTypesById, `${values.alert_type}.name`, 'Tutti')}
@@ -58,7 +58,7 @@ class SubNavbar extends PureComponent {
           <span className="">{alerts.length} segnalazioni</span>
         </div>
 
-        <div className='pt-1 w-25'>
+        <div className='w-25'>
           <input
             onChange={e => onChangeFilterDebounced({
               ...values,
