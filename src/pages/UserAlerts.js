@@ -6,6 +6,7 @@ import BottomTabs from '../components/BottomTabs'
 import { connect } from 'react-redux'
 import { loadAlerts, getAlerts, voteAlert } from '../state/alerts'
 import { loadAlertTypes, getAlertTypes } from '../state/alertTypes'
+import { getAuthUser } from 'eazy-auth'
 import debounce from 'lodash/debounce'
 import qs from 'query-string'
 
@@ -42,7 +43,7 @@ class UserAlerts extends PureComponent {
   }
 
   render() {
-    const { alerts, alertTypes, match, location } = this.props
+    const { alerts, alertTypes, match, location, user } = this.props
     const { params } = match
     const activeTab = params.activeTab || 'list'
     const filters = qs.parse(location.search)
@@ -60,7 +61,7 @@ class UserAlerts extends PureComponent {
           <div className="p-4">
             <h2 className="mb-0">Le tue segnalazioni</h2>
           </div>
-          <AlertsList alerts={alerts}/>
+          <AlertsList alerts={alerts.filter(alert => +alert.user === +user.id)}/>
         </div>
         <BottomTabs toggleTab={this.toggleTab} currentTab={activeTab}/>
       </Layout>
@@ -72,6 +73,7 @@ const emptyList = []
 export default connect(state => ({
   alerts: getAlerts(state) || emptyList,
   alertTypes: getAlertTypes(state) || emptyList,
+  user: getAuthUser(state),
 }), {
   loadAlerts,
   loadAlertTypes,
