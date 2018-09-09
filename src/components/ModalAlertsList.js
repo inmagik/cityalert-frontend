@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loadSimilarAlerts, getSimilarAlerts } from '../state/similarAlerts'
+import { voteAlert } from '../state/alerts'
+import { getAlertColor } from '../utils'
 
 class ModalAlertsList extends Component {
   componentDidMount() {
@@ -20,23 +23,37 @@ class ModalAlertsList extends Component {
     })
   }
 
+  vote = (alert) => {
+    if (alert.vote_by_me) {
+      this.props.history.push(`/alert-detail/${alert.id}`)
+      return
+    }
+    this.props.voteAlert({ id: alert.id }).then(() => {
+      this.props.history.push(`/alert-detail/${alert.id}`)
+    })
+  }
+
   render() {
     const { alerts } = this.props
     return (
       <div>
+        <div style={{ maxHeight: 500, overflow: 'auto' }}>
         {alerts.map(alert => (
-          <div key={alert.id}>
-            {alert.description}
+          <div onClick={() => this.vote(alert)} key={alert.id} className='border m-2 p-2' style={{ cursor: 'pointer' }}>
+            <b>{alert.alert_type_verbose} {alert.response && <span className="badge ml-1" style={{backgroundColor:getAlertColor(alert), color: '#fff'}}>{alert.response.status}</span>}</b><br/>
+            <div>{alert.description}</div>
           </div>
         ))}
+        </div>
         <button onClick={this.props.confirm} className='btn btn-success'>Conferma</button>
       </div>
     )
   }
 }
 
-export default connect(state => ({
+export default withRouter(connect(state => ({
   alerts: getSimilarAlerts(state) || [],
 }), {
   loadSimilarAlerts,
-})(ModalAlertsList)
+  voteAlert,
+})(ModalAlertsList))
