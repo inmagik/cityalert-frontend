@@ -46,10 +46,13 @@ class ModalAlertsList extends Component {
           <div onClick={() => this.vote(alert)} key={alert.id} className='border m-2 p-2' style={{ cursor: 'pointer' }}>
             <b>{alert.alert_type_verbose} {alert.response && <span className="badge ml-1" style={{backgroundColor:getAlertColor(alert), color: '#fff'}}>{alert.response.status}</span>}</b><br/>
             <div>{alert.description}</div>
+            <small>{alert.location}</small>
           </div>
         ))}
         </div>
-        <button onClick={this.props.confirm} className='btn btn-success'>Conferma</button>
+        <div className='text-center'>
+          <button onClick={this.props.confirm} className='btn btn-success'>Conferma</button>
+        </div>
       </div>
     )
   }

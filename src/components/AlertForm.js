@@ -65,6 +65,10 @@ class AlertForm extends Component {
         <Modal isOpen={this.state.similarSearch !== null} toggle={this.closeModal}>
           <div className="p-4">
             <h5>Conferma invio</h5>
+            <small>
+              Sono state individuate alcune segnalazioni simili sei sicuro che una
+              di questa non descriva già il tuo problema?
+            </small>
           </div>
           <ModalBody>
             {this.state.similarSearch !== null && <ModalAlertsList
