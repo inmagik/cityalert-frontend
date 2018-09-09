@@ -20,6 +20,10 @@ class ModalAlertsList extends Component {
       },
       location: alert.position.location,
       alert_type: +alert.alert_type === 0 ? null : alert.alert_type,
+    }).then(similar => {
+      if (similar.data.length ===0 ) {
+        this.props.confirm()
+      }
     })
   }
 
@@ -51,8 +55,9 @@ class ModalAlertsList extends Component {
   }
 }
 
+const empty = []
 export default withRouter(connect(state => ({
-  alerts: getSimilarAlerts(state) || [],
+  alerts: getSimilarAlerts(state) || empty,
 }), {
   loadSimilarAlerts,
   voteAlert,
