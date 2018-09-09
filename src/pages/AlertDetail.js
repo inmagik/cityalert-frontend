@@ -8,6 +8,7 @@ import BottomTabs from '../components/BottomTabs'
 import { connect } from 'react-redux'
 import { loadAlert, getAlert, createAlertResponse } from '../state/alerts'
 import omitBy from 'lodash/omitBy'
+import MomentSpan from '../components/MomentSpan'
 
 import debounce from 'lodash/debounce'
 import qs from 'query-string'
@@ -47,7 +48,10 @@ class AlertDetail extends PureComponent {
           <div className="p-4">
             <h2>{alert.alert_type_verbose}</h2>
             <div className="m-2">
-              {alert.description}
+              <b>Descrizione:</b> {alert.description}
+            </div>
+            <div className="m-2 text-muted">
+              Inserito il <MomentSpan date={alert.created}/> da {alert.user_email}
             </div>
             <div className="row">
               <div className="col">
@@ -68,7 +72,7 @@ class AlertDetail extends PureComponent {
           <h3>Segnalazioni simili</h3>
           <div className="alert alert-info mb-2">
             CityAlert ha individuato le seguenti segnalazioni che potrebbero essere simili a quella che stai
-            vedendo. Conferma
+            vedendo. Selezionando queste segnalazioni la risposta verrà applicata a tutte.
           </div>
           {alert.similar_alerts && alert.similar_alerts.length > 0 && <div>
             {alert.similar_alerts.map((alert, i)=> {
@@ -102,7 +106,7 @@ class AlertDetail extends PureComponent {
           <h3>Gestione segnalazione</h3>
           <div className="alert alert-info">
             Utilizzare i pulsanti di seguito per modificare lo stato della risposta.
-            Puoi inserire un messaggio che verrà inviato al cittadino.
+            Puoi inserire un messaggio visibile ai cittadini insieme allo stato della richiesta.
           </div>
           <div className="p-2">
             <textarea className="w-100" value={this.state.message} onChange={(e)=>{this.setState({message:e.target.value})}}>

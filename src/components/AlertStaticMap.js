@@ -37,7 +37,7 @@ class AlertStaticMap extends PureComponent {
         />
         <Marker position={position}>
          <Popup>
-           A pretty CSS3 popup. <br /> Easily customizable.
+           {alert.description}
          </Popup>
        </Marker>
       </Map>
