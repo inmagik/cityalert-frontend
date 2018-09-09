@@ -109,6 +109,7 @@ export class FieldFile extends Component {
           onChange={adaptFileEventToValue(onChange)}
           onBlur={adaptFileEventToValue(onBlur)}
           type="file"
+          className=""
           innerRef={r => this.file = r}
           {...inputProps}
           {...props}

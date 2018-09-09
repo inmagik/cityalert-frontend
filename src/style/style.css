@@ -4,14 +4,15 @@
 .subnavbar {
   width: 100%;
   height: 50px;
-  background-color: #cdcdcd;
   position: fixed;
   top: 56px;
   z-index: 10;
   display: inline-flex;
+  background-color: #fff;
   justify-content: space-between;
   padding-left: 10px;
-  padding-right: 10px; }
+  padding-right: 10px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); }
 
 .bottomtabs {
   width: 100%;

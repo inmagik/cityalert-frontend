@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { Link, Route } from 'react-router-dom'
 
 class Navbar extends PureComponent {
   render() {
@@ -8,6 +9,13 @@ class Navbar extends PureComponent {
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
+        <Route path='/alerts/map' exact>
+          <Link className="btn btn-outline-primary" to='/alerts/add'>
+            <i className="fa fa-plus"></i>{' '}Aggiungi segnalazione
+          </Link>
+        </Route>
+
+
       </nav>
     )
   }

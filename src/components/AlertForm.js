@@ -74,9 +74,12 @@ class AlertForm extends Component {
           </ModalBody>
         </Modal>
 
-        <button disabled={!valid}
-          onClick={this.searchForSimilar}
-          type='button' className='btn btn-success'>Invia</button>
+        <div className="text-center m-2 p-3 bg-light">
+          <button disabled={!valid}
+            onClick={this.searchForSimilar}
+            type='button' className='btn btn-success'>Invia segnalazione</button>
+        </div>
+
       </form>
     )
   }

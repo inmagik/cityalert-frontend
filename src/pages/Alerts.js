@@ -52,6 +52,7 @@ class Alerts extends PureComponent {
       <Layout>
         <SubNavbar
           values={filters}
+          alerts={alerts}
           onChangeFilter={this.onChangeFilter}
           onChangeFilterDebounced={this.onChangeFilterDebounced}
           alertTypes={alertTypes}

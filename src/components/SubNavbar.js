@@ -6,7 +6,7 @@ import { responsesStatuses } from '../utils'
 
 class SubNavbar extends PureComponent {
   render() {
-    const { alertTypes, onChangeFilter, onChangeFilterDebounced, values } = this.props
+    const { alertTypes, onChangeFilter, onChangeFilterDebounced, values, alerts } = this.props
     const alertTypesById = keyBy(alertTypes, 'id')
     return (
       <div className="subnavbar" style={{ zIndex: 99999 }}>
@@ -54,7 +54,11 @@ class SubNavbar extends PureComponent {
       </UncontrolledDropdown>
         </div>
 
-        <div className='pt-1 w-100 ml-2'>
+        <div className="d-flex justify-content-center align-items-center mx-2">
+          <span className="">{alerts.length} Segnalazioni presenti</span>
+        </div>
+
+        <div className='pt-1 w-25'>
           <input
             onChange={e => onChangeFilterDebounced({
               ...values,
