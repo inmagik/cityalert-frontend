@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Fragment } from 'react'
 import AlertsList from '../components/AlertsList'
 import AlertsMap from '../components/AlertsMap'
 import AlertStaticMap from '../components/AlertStaticMap'
@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import { loadAlert, getAlert, createAlertResponse } from '../state/alerts'
 import omitBy from 'lodash/omitBy'
 import MomentSpan from '../components/MomentSpan'
+import { getAuthUser } from 'eazy-auth'
 
 import debounce from 'lodash/debounce'
 import qs from 'query-string'
@@ -38,7 +39,7 @@ class AlertDetail extends PureComponent {
     })
   }
   render() {
-    const { alert } = this.props
+    const { alert, user } = this.props
     if(!alert){return null}
 
     return (
@@ -96,6 +97,7 @@ class AlertDetail extends PureComponent {
           </div>}
           <hr/>
 
+          {user.is_staff && <Fragment>
           <h3>Problemi di sicurezza</h3>
           <div className="alert alert-info">
             Se la problematica segnalata comporta problemi di sicurezza, indicarlo di seguito.
@@ -127,6 +129,8 @@ class AlertDetail extends PureComponent {
             <button onClick={this.saveResponse('accepted')} className="btn btn-primary">PRENDI IN CARICO</button>
             <button onClick={this.saveResponse('resolved')} className="btn btn-success">RISOLVI</button>
           </div>
+        </Fragment>}
+
         </div>
       </Layout>
     )
@@ -136,6 +140,7 @@ class AlertDetail extends PureComponent {
 
 export default connect(state => ({
   alert: getAlert(state),
+  user: getAuthUser(state),
 }), {
   loadAlert, createAlertResponse
 })(AlertDetail)
