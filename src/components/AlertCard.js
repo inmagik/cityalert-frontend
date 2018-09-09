@@ -11,13 +11,12 @@ class AlertCard extends PureComponent {
           <div className='d-inline-flex w-100'>
             <div className='alertcard-right '>
               <div style={{width:100}} className="mr-2">
-                {alert.image && <img className="img-thumbnail" src={alert.image} alt="Card cap" />}
+                {alert.image && <img className="img-thumbnail p-0 border-0" src={alert.image} alt="Card cap" />}
               </div>
               <div className='p-2'>
-                <h5>{alert.alert_type_verbose}</h5>
-                <p>{alert.description}</p>
-                <p>{alert.location}</p>
-                <p>{alert.response && <span className="badge p-2" style={{backgroundColor:getAlertColor(alert), color: '#fff'}}>{alert.response.status}</span>}</p>
+                <b>{alert.alert_type_verbose} {alert.response && <span className="badge ml-1" style={{backgroundColor:getAlertColor(alert), color: '#fff'}}>{alert.response.status}</span>}</b><br/>
+                <div>{alert.description}</div>
+                <div>{alert.location}</div>
               </div>
             </div>
             <div className='alertcard-left'>
@@ -26,12 +25,17 @@ class AlertCard extends PureComponent {
               <div className="">
 
               </div>
-              {!alert.vote_by_me && <button className="btn btn-primary" onClick={() => onVote(alert.id)}>VOTA</button>}
-              <div>+ {alert.votes_count}</div>
-              <Link to={`/alert-detail/${alert.id}`}>
-                DETTAGLIO{' '}
-                <i className="fa fa-chevron-right"></i>
-              </Link>
+              <div className='text-dark d-inline-flex mb-2'>
+                <b className='pt-1'>+ {alert.votes_count}</b>
+                {!alert.vote_by_me &&
+                  <button className="btn btn-outline-dark btn-sm ml-1" onClick={() => onVote(alert.id)}>VOTA <i className="fa fa-thumbs-up"></i></button>}
+              </div>
+              <div className='mt-3'>
+                <Link to={`/alert-detail/${alert.id}`}>
+                  DETTAGLIO{' '}
+                  <i className="fa fa-chevron-right"></i>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
