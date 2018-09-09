@@ -32,7 +32,7 @@ class AlertDetail extends PureComponent {
       security_issue: this.state.securityIssue,
       priority: 1,
       message: this.state.message,
-      related_alerts: Object.keys(omitBy(this.state.similar, x => !!x))
+      related_alerts: Object.keys(omitBy(this.state.similar, x => !!x)).concat(this.props.alert.id)
     }).then(()=>{
       this.props.history.push("/alerts/list")
     })
@@ -70,7 +70,7 @@ class AlertDetail extends PureComponent {
           </div>
           {alert.similar_alerts && alert.similar_alerts.length > 0 && <div>
             {alert.similar_alerts.map((alert, i)=> {
-              return <div className="border m-2 p-2 d-flex">
+              return <div className="border m-2 p-2 d-flex" key={i}>
                 <div className="check mr-4">
                   <input
                     type="checkbox"
