@@ -46,6 +46,11 @@ export const {
       selectors: {
         getData: getAlert,
       },
+    },
+    createResponse: {
+      actions: {
+        load: createAlertResponse,
+      },
     }
   },
   saga,
@@ -81,6 +86,14 @@ export const {
           })
         .then(({ body }) => body)
     })
+  }),
+
+  createResponse: rj(rjWithPromise, {
+    state: false,
+    type: 'CREATE_ALERT_RESPONSE',
+    api: t => (alertResponse) =>
+      withToken(t, request.post(`/api/responses/`))
+        .then(alertResponse)
   }),
 
   vote: rj(rjUpdate(), {
