@@ -1,4 +1,5 @@
 import React, { PureComponent }  from 'react'
+import { Link } from 'react-router-dom'
 
 class AlertCard extends PureComponent {
   render() {
@@ -7,18 +8,29 @@ class AlertCard extends PureComponent {
       <div className="card mt-1">
         <div className="card-body p-1">
           <div className='d-inline-flex w-100'>
-            <div className='alertcard-right'>
-              <img className="img-thumbnail" src={alert.image} alt="Card cap" />
+            <div className='alertcard-right '>
+              <div style={{width:100}} className="mr-2">
+                {alert.image && <img className="img-thumbnail" src={alert.image} alt="Card cap" />}
+              </div>
               <div className='p-2'>
-                {/* <h5>Categoria: {}</h5> */}
+                <h5>{alert.alert_type_verbose}</h5>
                 <p>{alert.description}</p>
+                <p>{alert.location}</p>
+                <p>{alert.response && <span className="badge">{alert.response.status}</span>}</p>
               </div>
             </div>
             <div className='alertcard-left'>
               {/* <span>Posizione: {alert.position}</span><br/> */}
               {/* <span>Stato: <b>{alertState}</b></span> */}
-              {!alert.vote_by_me && <button onClick={() => onVote(alert.id)}>Vote</button>}
+              <div className="">
+
+              </div>
+              {!alert.vote_by_me && <button className="btn btn-primary" onClick={() => onVote(alert.id)}>VOTA</button>}
               <div>+ {alert.votes_count}</div>
+              <Link to={`/alert-detail/${alert.id}`}>
+                DETTAGLIO{' '}
+                <i className="fa fa-chevron-right"></i>
+              </Link>
             </div>
           </div>
         </div>

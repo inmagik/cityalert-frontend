@@ -53,8 +53,9 @@ class AlertDetail extends PureComponent {
               <div className="col">
                 <AlertStaticMap alert={alert}/>
               </div>
-              <div className="col">
+              <div className="col text-center d-flex align-items-center justify-content-center">
                 {alert.image && <img className="w-100" src={alert.image} alt={'xxx'}></img>}
+                {!alert.image && <span>Nessuna immagine</span>}
               </div>
 
             </div>
@@ -62,8 +63,9 @@ class AlertDetail extends PureComponent {
 
             </div>
           </div>
+          <hr/>
           {/* similar alerts */}
-          <h2>Segnalazioni simili</h2>
+          <h3>Segnalazioni simili</h3>
           <div className="alert alert-info mb-2">
             CityAlert ha individuato le seguenti segnalazioni che potrebbero essere simili a quella che stai
             vedendo. Conferma
@@ -84,8 +86,9 @@ class AlertDetail extends PureComponent {
               </div>
             })}
           </div>}
+          <hr/>
 
-          <h2>Problemi di sicurezza</h2>
+          <h3>Problemi di sicurezza</h3>
           <div className="alert alert-info">
             Se la problematica segnalata comporta problemi di sicurezza, indicarlo di seguito.
           </div>
@@ -95,8 +98,8 @@ class AlertDetail extends PureComponent {
               {'  '} Questa segnalazione comporta problemi di sicurezza
             </div>
           </div>
-
-          <h2>Gestione segnalazione</h2>
+          <hr/>
+          <h3>Gestione segnalazione</h3>
           <div className="alert alert-info">
             Utilizzare i pulsanti di seguito per modificare lo stato della risposta.
             Puoi inserire un messaggio che verrà inviato al cittadino.
