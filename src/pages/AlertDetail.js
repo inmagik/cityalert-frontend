@@ -57,10 +57,10 @@ class AlertDetail extends PureComponent {
               Inserito il <MomentSpan date={alert.created}/> da {alert.user_email}
             </div>
             <div className="row">
-              <div className="col col-sm-12">
+              <div className="col-md-6 col-xs-12 col-sm-12">
                 <AlertStaticMap alert={alert}/>
               </div>
-              <div className="col col-sm-12 text-center d-flex align-items-center justify-content-center">
+              <div className="col-md-6 col-xs-12 col-sm-12 text-center d-flex align-items-center justify-content-center">
                 {alert.image && <img className="w-100" src={alert.image} alt={'xxx'}></img>}
                 {!alert.image && <div className="d-flex align-items-center justify-content-center" style={{height:100}}>Nessuna immagine</div>}
               </div>
