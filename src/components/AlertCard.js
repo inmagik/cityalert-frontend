@@ -1,10 +1,12 @@
 import React, { PureComponent }  from 'react'
 import { Link } from 'react-router-dom'
 import { getAlertColor } from '../utils'
+import { connect } from 'react-redux'
+import { getAuthUser } from 'eazy-auth'
 
 class AlertCard extends PureComponent {
   render() {
-    const { alert, onVote } = this.props
+    const { alert, onVote, user } = this.props
     return (
       <div className="card mt-1">
         <div className="card-body p-1">
@@ -14,7 +16,12 @@ class AlertCard extends PureComponent {
                 {alert.image && <img className="img-thumbnail p-0 border-0" src={alert.image} alt="Card cap" />}
               </div>
               <div className='p-2'>
-                <b>{alert.alert_type_verbose} {alert.response && <span className="badge ml-1" style={{backgroundColor:getAlertColor(alert), color: '#fff'}}>{alert.response.status}</span>}</b><br/>
+                <b>{alert.alert_type_verbose} {alert.response && <span className="badge ml-1" style={{backgroundColor:getAlertColor(alert), color: '#fff'}}>
+                  {alert.response.status}</span>}
+                  {user && user.is_staff && alert.assigned_office && <span className="badge badge-dark ml-1">Ufficio: {alert.assigned_office_verbose}</span>}
+                  </b>
+                  <br/>
+
                 <div>{alert.description}</div>
                 <div>{alert.location}</div>
               </div>
@@ -51,4 +58,8 @@ AlertCard.defaultProps = {
   alertState: 'accettato',
 }
 
-export default AlertCard
+const mapStateToProps = state => ({
+  user: getAuthUser(state),
+})
+
+export default connect(mapStateToProps)(AlertCard)
