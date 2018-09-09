@@ -8,7 +8,7 @@ class AlertCard extends PureComponent {
     return (
       <div className="card mt-1">
         <div className="card-body p-1">
-          <div className='d-inline-flex w-100'>
+          <div className='d-inline-flex w-100 card-container'>
             <div className='alertcard-right '>
               <div style={{width:100}} className="mr-2">
                 {alert.image && <img className="img-thumbnail p-0 border-0" src={alert.image} alt="Card cap" />}
@@ -20,11 +20,6 @@ class AlertCard extends PureComponent {
               </div>
             </div>
             <div className='alertcard-left'>
-              {/* <span>Posizione: {alert.position}</span><br/> */}
-              {/* <span>Stato: <b>{alertState}</b></span> */}
-              <div className="">
-
-              </div>
               <div className='mb-2'>
                 <b className='pt-1 text-info'>+ {alert.votes_count}</b>
                 {!alert.vote_by_me && onVote &&
