@@ -5,7 +5,7 @@ class AlertsList extends PureComponent {
   render() {
     const { alerts, onVote } = this.props
     return (
-      <div className='p-2'>
+      <div className='p-2 mb-5'>
         {alerts.map((alert, i) => (
           <AlertCard key={i} alert={alert} onVote={onVote} />
         ))}

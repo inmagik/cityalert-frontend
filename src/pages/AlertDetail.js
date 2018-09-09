@@ -9,6 +9,7 @@ import { loadAlert, getAlert, createAlertResponse } from '../state/alerts'
 import omitBy from 'lodash/omitBy'
 import MomentSpan from '../components/MomentSpan'
 import { getAuthUser } from 'eazy-auth'
+import { getAlertColor } from '../utils'
 
 import debounce from 'lodash/debounce'
 import qs from 'query-string'
@@ -47,6 +48,7 @@ class AlertDetail extends PureComponent {
         <div className="container" style={{paddingTop:50}}>
           <div className="p-4">
             <h2>{alert.alert_type_verbose}</h2>
+            {alert.response && <h5 className="badge ml-1" style={{backgroundColor:getAlertColor(alert), color: '#fff'}}>{alert.response.status}</h5>}
             <div className="m-2">
               <b>Descrizione:</b> {alert.description}
             </div>
@@ -54,12 +56,12 @@ class AlertDetail extends PureComponent {
               Inserito il <MomentSpan date={alert.created}/> da {alert.user_email}
             </div>
             <div className="row">
-              <div className="col">
+              <div className="col col-sm-12">
                 <AlertStaticMap alert={alert}/>
               </div>
-              <div className="col text-center d-flex align-items-center justify-content-center">
+              <div className="col col-sm-12 text-center d-flex align-items-center justify-content-center">
                 {alert.image && <img className="w-100" src={alert.image} alt={'xxx'}></img>}
-                {!alert.image && <span>Nessuna immagine</span>}
+                {!alert.image && <div className="d-flex align-items-center justify-content-center" style={{height:100}}>Nessuna immagine</div>}
               </div>
 
             </div>
@@ -68,6 +70,7 @@ class AlertDetail extends PureComponent {
             </div>
           </div>
           <hr/>
+          {user.is_staff && <Fragment>
           {/* similar alerts */}
           <h3>Segnalazioni simili</h3>
           <div className="alert alert-info mb-2">
@@ -96,6 +99,7 @@ class AlertDetail extends PureComponent {
             })}
           </div>}
           <hr/>
+          </Fragment>}
 
           {user.is_staff && <Fragment>
           <h3>Problemi di sicurezza</h3>
