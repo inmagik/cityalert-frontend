@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Modal, ModalHeader, ModalBody, Label } from 'reactstrap'
-import { loadSearchLocation, getSearchLocation } from '../../state/geocoding'
+import { loadSearchLocation, stopSearchLocation, getSearchLocation } from '../../state/geocoding'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import { getCurrentPosition } from '../../state/currentPosition'
 import 'leaflet/dist/leaflet.css';
@@ -26,6 +26,10 @@ class FieldPosition extends React.PureComponent {
 
   search = (e) => {
     this.props.loadSearchLocation(e.target.value)
+  }
+
+  componentWillUnmount() {
+    this.props.stopSearchLocation()
   }
 
   choosePlace = place => () => {
@@ -88,11 +92,13 @@ class FieldPosition extends React.PureComponent {
               </input>
               <div>
                 {searchLocation && searchLocation.length > 0 && searchLocation.map((place, i) => (
-                  <div className="d-flex flex-row" key={i}>
+                  <div className="d-flex flex-row border m-2 p-2" key={i}>
                     {place.display_name}
-                    <button
-                      onClick={this.choosePlace(place)}
-                      type="button" className="btn btn-sm">o</button>
+                    <div>
+                      <button
+                        onClick={this.choosePlace(place)}
+                        type="button" className="btn btn-outline-primary btn-sm">Scegli</button>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -107,4 +113,4 @@ class FieldPosition extends React.PureComponent {
 const mapStateToProps = state => ({
   searchLocation: getSearchLocation(state)
 })
-export default connect(mapStateToProps, {loadSearchLocation})(FieldPosition)
+export default connect(mapStateToProps, {loadSearchLocation, stopSearchLocation})(FieldPosition)

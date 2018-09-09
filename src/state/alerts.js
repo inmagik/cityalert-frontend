@@ -101,7 +101,7 @@ export const {
         .then(alertResponse)
   }),
 
-  vote: rj(rjUpdate(), {
+  vote: rj(rjWithPromise, rjUpdate(), {
     type: 'VOTE_ALERT',
     api: t => ({ id }) => withToken(t, request.post(`/api/vote-alert/${id}/`))
       .then(({ body }) => body)
