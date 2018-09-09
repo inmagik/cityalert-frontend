@@ -10,6 +10,10 @@ import MomentSpan from './MomentSpan'
 
 const stamenTonerTiles = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png';
 const stamenTonerAttr = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+const currentPostIcon = L.icon.fontAwesome({
+  iconClasses: 'fa fa-user', // you _could_ add other icon classes, not tested.
+  markerColor: 'lime',
+  iconColor: '#FFF' })
 
 class AlertsMap extends PureComponent {
 
@@ -24,6 +28,7 @@ class AlertsMap extends PureComponent {
     const position = [this.state.lat, this.state.lng]
 
     console.log("alerts", alerts)
+    const renderKey = (alerts || []).map(x => x.id).join('-')
 
     return (
       <div className="alerts-map bg-dark">
@@ -32,11 +37,7 @@ class AlertsMap extends PureComponent {
           attribution={stamenTonerAttr}
           url={stamenTonerTiles}
         />
-        {/* {currentPosition && <Marker position={[currentPosition.latitude, currentPosition.longitude]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>} */}
+
         {/* <MarkerClusterGroup> */}
         {alerts && alerts.length > 0 && alerts.map((item, i) =>
           item.position && <Marker icon={ makeIcon(item)} key={item.id} position={item.position.coordinates.slice().reverse()}>
@@ -58,6 +59,14 @@ class AlertsMap extends PureComponent {
           </Marker>
         )}
       {/* </MarkerClusterGroup> */}
+      {currentPosition && <Marker
+        key={renderKey}
+        icon={currentPostIcon}
+        position={[currentPosition.latitude, currentPosition.longitude]}>
+        <Popup>
+          Posizione corrente.
+        </Popup>
+      </Marker>}
       </Map>
 
       </div>
