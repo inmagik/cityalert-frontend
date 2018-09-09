@@ -8,6 +8,10 @@ import { makeUpdateReducer } from 'redux-rocketjump/plugins/hor'
 
 function getBase64(file) {
   return new Promise(resolve => {
+     if (!file) {
+       resolve(file)
+       return
+     }
      var reader = new FileReader();
      reader.readAsDataURL(file);
      reader.onload = function () {
