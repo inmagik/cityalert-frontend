@@ -55,7 +55,7 @@ class SubNavbar extends PureComponent {
         </div>
 
         <div className="d-flex justify-content-center align-items-center mx-2">
-          <span className="">{alerts.length} Segnalazioni presenti</span>
+          <span className="">{alerts.length} segnalazioni</span>
         </div>
 
         <div className='pt-1 w-25'>

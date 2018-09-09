@@ -1,5 +1,6 @@
 import React, { PureComponent }  from 'react'
 import { Link } from 'react-router-dom'
+import { getAlertColor } from '../utils'
 
 class AlertCard extends PureComponent {
   render() {
@@ -16,7 +17,7 @@ class AlertCard extends PureComponent {
                 <h5>{alert.alert_type_verbose}</h5>
                 <p>{alert.description}</p>
                 <p>{alert.location}</p>
-                <p>{alert.response && <span className="badge">{alert.response.status}</span>}</p>
+                <p>{alert.response && <span className="badge p-2" style={{backgroundColor:getAlertColor(alert), color: '#fff'}}>{alert.response.status}</span>}</p>
               </div>
             </div>
             <div className='alertcard-left'>
